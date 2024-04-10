@@ -1,0 +1,115 @@
+# Model
+# Table 1 contains the points each team has earned so far and their home venues. Table 2 contains * the results of the first 23 matches. Table 3 contains the list of remaining 48 matches. Use the following model to * predict the outcomes of the games in Table 3.
+ 
+# 1. If both teams have a positive difference between For versus Against ratio, favor the home team to win. If venue is neutral, favor the team with greater difference to win.
+# 2. If both teams have a negative difference between For versus Against ratio, favor the home team to win. If venue is neutral, favor the team with lesser difference to win.
+# 3. If one team has a negative For versus Against ratio, and the other team has a positive For versus Against ratio, favor the team with the positive difference. 
+# 4. Ignore the matches with TBD in the fixtures
+
+import pandas as pd
+
+# Load the uploaded files into DataFrames
+points_table = pd.read_csv('/Users/rvvind/IPL-Analysis/IPL \'24 Predictions - Points Table.csv')
+results = pd.read_csv('/Users/rvvind/IPL-Analysis/IPL \'24 Predictions - Results.csv')
+fixtures = pd.read_csv('/Users/rvvind/IPL-Analysis/IPL \'24 Predictions - Fixtures.csv')
+
+# Display the first few rows of each DataFrame to understand their structure
+# print (points_table.head(), results.head(), fixtures.head())
+
+
+# Function to calculate runs and overs from the "FOR" and "AGAINST" columns
+def calculate_ratio(column):
+    ratios = []
+    for row in column:
+        runs, overs = map(float, row.split('/'))
+        # Convert overs to balls to avoid miscalculation in run rate calculation
+        total_balls = int(overs) * 6 + (overs - int(overs)) * 10
+        ratio = runs / total_balls
+        ratios.append(ratio)
+    return ratios
+
+
+# Calculate the For and Against ratios
+points_table['For Ratio'] = calculate_ratio(points_table['FOR'])
+points_table['Against Ratio'] = calculate_ratio(points_table['AGAINST'])
+points_table['Difference'] = points_table['For Ratio'] - points_table['Against Ratio']
+
+print (points_table['Difference'])
+
+# Extract necessary information for prediction: team names, their Difference, and home venues
+team_info = points_table[['TEAM', 'Difference']].set_index('TEAM')
+venues = { "RAJASTHAN ROYALS":"Sawai Mansingh Stadium, Jaipur", 
+              'KOLKATA KNIGHT RIDERS':'Eden Gardens, Kolkata',
+              'LUCKNOW SUPER GIANTS':'Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow',
+              'CHENNAI SUPER KINGS':'MA Chidambaram Stadium, Chennai',
+              'SUNRISERS HYDERABAD':'Rajiv Gandhi International Stadium, Hyderabad',
+              'PUNJAB KINGS':'PCA New Stadium, Mullanpur',
+              'GUJARAT TITANS':'Narendra Modi Stadium, Ahmedabad',
+              'MUMBAI INDIANS':'Wankhede Stadium, Mumbai',
+              'ROYAL CHALLENGERS BENGALURU':'M Chinnaswamy Stadium, Bengaluru',
+              'DELHI CAPITALS':'Arun Jaitley Stadium, Delhi',}
+
+
+df = pd.DataFrame(team_info)
+df['Home'] = venues
+
+team_info = df
+
+print (team_info)
+
+# Remove fixtures with "TBD" in the team names
+filtered_fixtures = fixtures[~fixtures['Team 1'].str.contains('TBD') & ~fixtures['Team 2'].str.contains('TBD')]
+
+# Prediction function based on the provided model
+def predict_winner(row, team_info):
+    team1 = row['Team 1']
+    team2 = row['Team 2']
+    venue = row['Venue']
+    
+    team1_diff = team_info.loc[team1, 'Difference']
+    team1_home = team_info.loc[team1, 'Home']
+    team2_diff = team_info.loc[team2, 'Difference']
+    team2_home = team_info.loc[team2, 'Home']
+    
+    # Case 1 and 2: Both teams have a positive or negative difference
+    if (team1_diff > 0 and team2_diff > 0) or (team1_diff < 0 and team2_diff < 0):
+        if venue == team1_home:
+            return team1
+        elif venue == team2_home:
+            return team2
+        else:
+            # Neutral or undefined venue, favor the team with the greater absolute difference
+            return team1 if abs(team1_diff) > abs(team2_diff) else team2
+    
+    # Case 3: One team has a positive difference, and the other has a negative difference
+    else:
+        return team1 if team1_diff > team2_diff else team2
+    
+# Apply the prediction function to each row in the filtered fixtures DataFrame
+filtered_fixtures['Predicted Winner'] = filtered_fixtures.apply(lambda row: predict_winner(row, team_info), axis=1)
+
+print (filtered_fixtures[['Match', 'Venue', 'Team 1', 'Team 2', 'Predicted Winner']])
+
+# Predicting for all remaining fixtures and displaying the complete list
+predictions = filtered_fixtures[['Match', 'Venue', 'Team 1', 'Team 2', 'Predicted Winner']]
+
+predictions.reset_index(drop=True, inplace=True)
+
+# Update the points table based on the predicted outcomes
+# Each win adds 2 points to the winning team's total
+
+# Initialize or update the PTS column for predictions if it doesn't already exist
+if 'Predicted PTS' not in points_table.columns:
+    points_table['Predicted PTS'] = points_table['PTS'].copy()
+
+# Function to update the predicted points for each match winner
+def update_predicted_points(winner):
+    points_table.loc[points_table['TEAM'] == winner, 'Predicted PTS'] += 2
+
+# Apply the function to each predicted winner
+predictions['Predicted Winner'].apply(update_predicted_points)
+
+# Sort the updated points table based on Predicted PTS and NRR as secondary sort key
+updated_points_table = points_table.sort_values(by=['Predicted PTS', 'NRR'], ascending=False)
+
+print (updated_points_table[['TEAM', 'Predicted PTS', 'NRR']].reset_index(drop=True))
