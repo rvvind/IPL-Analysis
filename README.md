@@ -13,4 +13,9 @@ A simple python program that reads the current points table and results as CSV f
    1. If both teams have a positive difference between For versus Against ratio, favor the home team to win. If venue is neutral, favor the team with greater difference to win.
    2. If both teams have a negative difference between For versus Against ratio, favor the home team to win. If venue is neutral, favor the team with lesser difference to win.
    3. If one team has a negative For versus Against ratio, and the other team has a positive For versus Against ratio, favor the team with the positive difference.
-2. More algorithms can be added. 
+2. More algorithms can be added.
+
+## Results
+1. Up to date Match level predictions - https://github.com/rvvind/IPL-Analysis/blob/master/IPL%20'24%20Predictions%20-%20Fixtures.csv
+2. Predicted Final points table -
+   1. 4/9/24: https://github.com/rvvind/IPL-Analysis/blob/master/Predicted%20Points%20Table%20-%204-9-24.csv
