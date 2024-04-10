@@ -78,9 +78,7 @@ def main():
     team_info = prepare_data(points_table)
     predictions = generate_predictions(fixtures, team_info)
     updated_points_table = update_points_table(predictions, points_table)
-    print("Predictions:\n", predictions.to_string(index=False
-
-))
+    print("Predictions:\n", predictions.to_string(index=False))
     print("\nUpdated Points Table:\n", updated_points_table[['TEAM', 'Predicted PTS', 'NRR']].to_string(index=False))
 
 if __name__ == "__main__":
