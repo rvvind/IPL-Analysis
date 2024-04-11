@@ -4,9 +4,9 @@ import pandas as pd # type: ignore
 
 # 1. Data Preparation
 def load_data():
-    points_table = pd.read_csv('IPL \'24 Predictions - Points Table.csv')
-    results = pd.read_csv('IPL \'24 Predictions - Results.csv')
-    fixtures = pd.read_csv('IPL \'24 Predictions - Fixtures.csv')
+    points_table = pd.read_csv('Inputs/IPL \'24 Predictions - Points Table.csv')
+    results = pd.read_csv('Inputs/IPL \'24 Predictions - Results.csv')
+    fixtures = pd.read_csv('Inputs/IPL \'24 Predictions - Fixtures.csv')
     return points_table, results, fixtures
 
 def calculate_ratio(column):
