@@ -1,9 +1,18 @@
 Match,Venue,Date,Result,Winner,Winner Score,Winner Overs,Loser,Loser Score,Loser Overs
-25,"Wankhede Stadium, Mumbai","APR, THU 11",7:30 pm IST,MUMBAI INDIANS,ROYAL CHALLENGERS BENGALURU,MUMBAI INDIANS,MUMBAI INDIANS
-26,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow","APR, FRI 12",7:30 pm IST,LUCKNOW SUPER GIANTS,DELHI CAPITALS,LUCKNOW SUPER GIANTS,DELHI CAPITALS
-27,"PCA New Stadium, Mullanpur","APR, SAT 13",7:30 pm IST,PUNJAB KINGS,RAJASTHAN ROYALS,RAJASTHAN ROYALS,RAJASTHAN ROYALS
-23,"PCA New Stadium, Mullanpur","APR, TUE 9",7:30 pm IST,SUNRISERS HYDERABAD,PUNJAB KINGS,SUNRISERS HYDERABAD
-24,"Sawai Mansingh Stadium, Jaipur","APR, WED 10",7:30 pm IST,RAJASTHAN ROYALS,GUJARAT TITANS,GUJARAT TITANS
+Match ID,Venue,Date,Result,Winning Team,Winning Score,Winning Overs,Losing Team,Losing Score,Losing Overs
+35,"Arun Jaitley Stadium, Delhi","APR, SAT 20",SUNRISERS HYDERABAD WON BY 67 RUNS,Sunrisers Hyderabad,266/7,20.0 OV,Delhi Capitals,199,19.1
+34,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow","APR, FRI 19",LUCKNOW SUPER GIANTS WON BY 8 WICKETS,Lucknow Super Giants,180/2,19.0 OV,Chennai Super Kings,176/6,20.0
+33,"PCA New Stadium, Mullanpur","APR, THU 18",MUMBAI INDIANS WON BY 9 RUNS,Mumbai Indians,192/7,20.0,Punjab Kings,183,19.1
+32,"Narendra Modi Stadium, Ahmedabad","APR, WED 17",DELHI CAPITALS WON BY 6 WICKETS,Delhi Capitals,92/4,8.5,Gujarat Titans,89,17.3
+31,"Eden Gardens, Kolkata","APR, TUE 16",RAJASTHAN ROYALS WON BY 2 WICKETS,Rajasthan Royals,224/8,20.0,Kolkata Knight Riders,223/6,20.0
+30,"M Chinnaswamy Stadium, Bengaluru","APR, MON 15",SUNRISERS HYDERABAD WON BY 25 RUNS,Sunrisers Hyderabad,287/3,20.0,Royal Challengers Bengaluru,262/7,20.0
+29,"Wankhede Stadium, Mumbai","APR, SUN 14",CHENNAI SUPER KINGS WON BY 20 RUNS,Chennai Super Kings,206/4,20.0,Mumbai Indians,186/6,20.0
+28,"Eden Gardens, Kolkata","APR, SUN 14",KOLKATA KNIGHT RIDERS WON BY 8 WICKETS,Kolkata Knight Riders,162/2,15.4,Lucknow Super Giants,161/7,20.0
+27,"PCA New Stadium, Mullanpur","APR, SAT 13",RAJASTHAN ROYALS WON BY 3 WICKETS,Rajasthan Royals,152/7,19.5,Punjab Kings,147/8,20.0
+26,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow","APR, FRI 12",DELHI CAPITALS WON BY 6 WICKETS,Delhi Capitals,170/4,18.1,Lucknow Super Giants,167/7,20.0
+25,"Wankhede Stadium, Mumbai","APR, THU 11",MUMBAI INDIANS WON BY 7 WICKETS,Mumbai Indians,199/3,15.3,Royal Challengers Bengaluru,196/8,20.0
+24,"Sawai Mansingh Stadium, Jaipur","APR, WED 10",GUJARAT TITANS WON BY 3 WICKETS,Gujarat Titans,199/7,20.0,Rajasthan Royals,196/3,20.0
+23,"PCA New Stadium, Mullanpur","APR, TUE 9",SUNRISERS HYDERABAD WON BY 2 RUNS,Sunrisers Hyderabad,182/9,20.0,Punjab Kings,180/6,20.0
 22,"MA Chidambaram Stadium, Chennai","APR, MON 8",CHENNAI SUPER KINGS WON BY 7 WICKETS,CHENNAI SUPER KINGS,141/3,17.4,KOLKATA KNIGHT RIDERS,137/9,20
 21,"Bharat Ratna Shri Atal Bihari Vajpayee Ekana Cricket Stadium, Lucknow","APR, SUN 7",LUCKNOW SUPER GIANTS WON BY 33 RUNS,LUCKNOW SUPER GIANTS,163/5,20,GUJARAT TITANS,130,18.5
 20,"Wankhede Stadium, Mumbai","APR, SUN 7",MUMBAI INDIANS WON BY 29 RUNS,MUMBAI INDIANS,234/5,20,DELHI CAPITALS,205/8,20
